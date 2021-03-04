@@ -1,0 +1,129 @@
+package ru.mrroot.android1.lesson1;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    public void detectOrientation(View v){
+        Context appContext = getApplicationContext();
+        Configuration configuration = getResources().getConfiguration();
+        if(configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(appContext, "Портретная ориентация", Toast.LENGTH_LONG).show();
+        }
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(appContext, "Альбомная ориентация", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    TextView resultField; // текстовое поле для вывода результата
+    EditText numberField;   // поле для ввода числа
+    TextView operationField;    // текстовое поле для вывода знака операции
+    Double operand = null;  // операнд операции
+    String lastOperation = "="; // последняя операция
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.keyboard);
+       // setContentView(R.layout.layout_land_calc_keyboard);
+       // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //фиксация ориентации
+        // получаем все поля по id из keyboard.xml
+        resultField = findViewById(R.id.resultField);
+        numberField = findViewById(R.id.numberField);
+        operationField = findViewById(R.id.operationField);
+    }
+    // сохранение состояния
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("OPERATION", lastOperation);
+        if(operand!=null)
+            outState.putDouble("OPERAND", operand);
+        super.onSaveInstanceState(outState);
+    }
+    // получение ранее сохраненного состояния
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        lastOperation = savedInstanceState.getString("OPERATION");
+        operand= savedInstanceState.getDouble("OPERAND");
+        resultField.setText(operand.toString());
+        operationField.setText(lastOperation);
+    }
+    // обработка нажатия на числовую кнопку
+    public void onNumberClick(View view){
+
+        Button button = (Button)view;
+        numberField.append(button.getText());
+
+        if(lastOperation.equals("=") && operand!=null){
+            operand = null;
+        }
+    }
+    // обработка нажатия на кнопку операции
+    public void onOperationClick(View view){
+
+        Button button = (Button)view;
+        String op = button.getText().toString();
+        String number = numberField.getText().toString();
+        // если введенно что-нибудь
+        if(number.length()>0){
+            number = number.replace(',', '.');
+            try{
+                performOperation(Double.valueOf(number), op);
+            }catch (NumberFormatException ex){
+                numberField.setText("");
+            }
+        }
+        lastOperation = op;
+        operationField.setText(lastOperation);
+    }
+
+    private void performOperation(Double number, String operation){
+
+        // если операнд ранее не был установлен (при вводе самой первой операции)
+        if(operand ==null){
+            operand = number;
+        }
+        else{
+            if(lastOperation.equals("=")){
+                lastOperation = operation;
+            }
+            switch(lastOperation){
+                case "=":
+                    operand =number;
+                    break;
+                case "/":
+                    if(number==0){
+                        operand =0.0;
+                    }
+                    else{
+                        operand /=number;
+                    }
+                    break;
+                case "*":
+                    operand *=number;
+                    break;
+                case "+":
+                    operand +=number;
+                    break;
+                case "-":
+                    operand -=number;
+                    break;
+            }
+        }
+        resultField.setText(operand.toString().replace('.', ','));
+        numberField.setText("");
+    }
+}
