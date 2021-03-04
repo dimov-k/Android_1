@@ -1,0 +1,199 @@
+Index: Calculator/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calculator/app/src/main/res/values/strings.xml	(revision b77f935e02c8bae96928eb76516d66518e604ac8)
++++ Calculator/app/src/main/res/values/strings.xml	(date 1614184558801)
+@@ -1,3 +1,21 @@
+ <resources>
+     <string name="app_name">Calculator</string>
++    <string name="button2">,</string>
++    <string name="button12">7</string>
++    <string name="button18">X</string>
++    <string name="button15">/</string>
++    <string name="button17">DEL</string>
++    <string name="button11">+</string>
++    <string name="button7">-</string>
++    <string name="button13">8</string>
++    <string name="button9">5</string>
++    <string name="button6">3</string>
++    <string name="button5">2</string>
++    <string name="button4">1</string>
++    <string name="button3">=</string>
++    <string name="button1">0</string>
++    <string name="button14">9</string>
++    <string name="button10">6</string>
++    <string name="button16">AC</string>
++    <string name="button8">4</string>
+ </resources>
+\ No newline at end of file
+Index: Calculator/app/src/main/res/layout/keyboard.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Calculator/app/src/main/res/layout/keyboard.xml	(revision b77f935e02c8bae96928eb76516d66518e604ac8)
++++ Calculator/app/src/main/res/layout/keyboard.xml	(date 1614184558818)
+@@ -18,7 +18,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF9800"
+-       android:text="AC"
++       android:text="@string/button16"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button17"
+        app:layout_constraintStart_toEndOf="@+id/button12" />
+ 
+@@ -26,7 +26,7 @@
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="6"
++       android:text="@string/button10"
+        app:layout_constraintStart_toStartOf="@+id/button14"
+        app:layout_constraintTop_toBottomOf="@+id/button15" />
+ 
+@@ -34,7 +34,7 @@
+        android:id="@+id/button14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="9"
++       android:text="@string/button14"
+        app:layout_constraintStart_toStartOf="@+id/button17"
+        app:layout_constraintTop_toBottomOf="@+id/button18" />
+ 
+@@ -42,7 +42,7 @@
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="0"
++       android:text="@string/button1"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/button4" />
+ 
+@@ -50,7 +50,7 @@
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text=","
++       android:text="@string/button2"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+ 
+@@ -59,7 +59,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFF9800"
+-       android:text="="
++       android:text="@string/button3"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button7" />
+ 
+@@ -67,7 +67,7 @@
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="1"
++       android:text="@string/button4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button5"
+        app:layout_constraintStart_toStartOf="@+id/button8" />
+ 
+@@ -75,7 +75,7 @@
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="2"
++       android:text="@string/button5"
+        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
+ 
+@@ -83,7 +83,7 @@
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="3"
++       android:text="@string/button6"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/button11" />
+ 
+@@ -91,7 +91,7 @@
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="4"
++       android:text="@string/button8"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button9"
+        app:layout_constraintStart_toStartOf="@+id/button12" />
+ 
+@@ -99,7 +99,7 @@
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="5"
++       android:text="@string/button9"
+        app:layout_constraintStart_toEndOf="@+id/button12"
+        app:layout_constraintTop_toBottomOf="@+id/button12" />
+ 
+@@ -107,7 +107,7 @@
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+-       android:text="8"
++       android:text="@string/button13"
+        app:layout_constraintStart_toEndOf="@+id/button12"
+        app:layout_constraintTop_toBottomOf="@+id/button17" />
+ 
+@@ -116,7 +116,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFF9800"
+-       android:text="-"
++       android:text="@string/button7"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button6"
+        app:layout_constraintStart_toStartOf="@+id/button11" />
+ 
+@@ -125,7 +125,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFF9800"
+-       android:text="+"
++       android:text="@string/button11"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button10"
+        app:layout_constraintStart_toStartOf="@+id/button15" />
+ 
+@@ -135,7 +135,7 @@
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="282dp"
+        android:backgroundTint="#FFFF9800"
+-       android:text="DEL"
++       android:text="@string/button17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button16" />
+ 
+@@ -144,7 +144,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFF9800"
+-       android:text="/"
++       android:text="@string/button15"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button14"
+        app:layout_constraintStart_toStartOf="@+id/button18" />
+ 
+@@ -153,7 +153,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+-       android:text="7"
++       android:text="@string/button12"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button13"
+        app:layout_constraintStart_toStartOf="parent" />
+ 
+@@ -162,7 +162,7 @@
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFF9800"
+-       android:text="X"
++       android:text="@string/button18"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button17"
+        app:layout_constraintStart_toEndOf="@+id/button17" />
+ 
