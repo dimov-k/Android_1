@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="button_text_size">18sp</dimen>
+    <dimen name="button_width">0dp</dimen>
+    <dimen name="button_plus_height">0dp</dimen>
+    <dimen name="main_screen_text_size">40sp</dimen>
+    <dimen name="memory_screen_text_size">18sp</dimen>
+    <dimen name="switch_compat_text_size">14sp</dimen>
+</resources>
