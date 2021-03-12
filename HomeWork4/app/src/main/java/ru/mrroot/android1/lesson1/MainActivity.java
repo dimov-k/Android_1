@@ -6,17 +6,21 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.button.MaterialButton;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -33,41 +37,61 @@ public class MainActivity extends AppCompatActivity {
     private Operations numberOperation = Operations.RESULT;
     private final String POINT_REPRESENTATION = ".";
     private final String CLEAR_FIELD = "";
-    private final int MAX_ACCURACY = 8;
 
     private String numberField = CLEAR_FIELD;
     private EditText fieldNumber;
     private EditText fieldResult;
-    private Button mbuttonPoint;
+    static final String NAME_KEY_NIGH_THEME = "isNightTheme";
+    private static final int RESULT_SAVE = 1;
+    private static boolean isNightTheme = false;
+    private static final String prefs = "prefs.xml";
 
-/*    private static  final String prefs = "style.xml";
-    private  static final String pref_name = "theme";
-    private Switch change_theme;*/
 
     @Override
     protected void onCreate(Bundle saveInstState) {
-        super.onCreate(saveInstState);
-       /* boolean isNightTheme = getSharedPreferences(prefs, MODE_PRIVATE).getBoolean(pref_name, false);
+
+        isNightTheme = getSharedPreferences(prefs, MODE_PRIVATE).
+                getBoolean(NAME_KEY_NIGH_THEME, false);
         if (isNightTheme) {
-            setTheme(R.style.AppThemeDark);
-        }else {
-            setTheme(R.style.AppTheme);
-        }*/
+            setTheme(R.style.MyDarkThemes);
+        } else {
+            setTheme(R.style.MyThemes);
+        }
+
+        super.onCreate(saveInstState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.keyboard);
         initButtonNumbers();
         fieldNumber = findViewById(R.id.numberField);
         fieldResult = findViewById(R.id.resultField);
+
+        MaterialButton buttonSettings = findViewById(R.id.button_Settings);
+        buttonSettings.setOnClickListener(view -> {
+            Intent intent = new Intent(this, Settings.class);
+            intent.putExtra("isNightTheme", isNightTheme);
+            startActivityForResult(intent, RESULT_SAVE);
+        });
+
         upDateWorkField();
-        /*change_theme.setOnCheckedChangeListener((CompoundButton buttonView, boolean isChecked) -> {
-            Toast.makeText(this, "New Theme",Toast.LENGTH_LONG).show();
-            SharedPreferences sharedPreferences = getSharedPreferences(prefs, MODE_PRIVATE);
-            if (sharedPreferences.getBoolean(pref_name, false) != isChecked) {
-                sharedPreferences.edit().
-                        putBoolean(pref_name, isChecked).apply();
-                recreate();
-            }
-    });*/
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int responseCode, Intent result) {
+        super.onActivityResult(requestCode, responseCode, result);
+
+        if (result != null && responseCode == RESULT_OK) {
+            isNightTheme = result.getBooleanExtra(NAME_KEY_NIGH_THEME, isNightTheme);
+            SharedPreferences sharedPreferences = getSharedPreferences(prefs, MODE_PRIVATE);
+            if (sharedPreferences.getBoolean(NAME_KEY_NIGH_THEME, false) != isNightTheme) {
+                sharedPreferences.edit().
+                        putBoolean(NAME_KEY_NIGH_THEME, isNightTheme).apply();
+            }
+            recreate();
+        }
+    }
+
 
     public String firstUpperCase(String word){
         if(word == null || word.isEmpty()) return "";
@@ -98,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        mbuttonPoint = findViewById(R.id.buttonPoint);
-        mbuttonPoint.setOnClickListener(view -> {
+        Button mButtonPoint = findViewById(R.id.buttonPoint);
+        mButtonPoint.setOnClickListener(view -> {
             clickNumberButton(POINT_REPRESENTATION);
         });
     }
@@ -195,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+        int MAX_ACCURACY = 8;
         double scale = Math.pow(10, MAX_ACCURACY);
         resultOperation = Math.ceil(resultOperation * scale) / scale;
 
@@ -207,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
     private void upDateWorkField() {
 
         if(flagDivBy_0) {
-            fieldNumber.setText("деление на 0!");
+            fieldNumber.setText("аяяяй нельзя делить на 0!");
             flagDivBy_0 = false;
             return;
         }
@@ -293,7 +318,4 @@ public class MainActivity extends AppCompatActivity {
         numberOperation = Operations.RESULT;
         upDateWorkField();
     }
-/*    private void init(){
-        change_theme = findViewById(R.id.change_theme);
-    }*/
 }

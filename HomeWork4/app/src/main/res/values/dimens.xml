@@ -4,6 +4,12 @@
     <dimen name="button_width">0dp</dimen>
     <dimen name="button_plus_height">0dp</dimen>
     <dimen name="main_screen_text_size">40sp</dimen>
-    <dimen name="memory_screen_text_size">18sp</dimen>
     <dimen name="switch_compat_text_size">14sp</dimen>
+
+    <dimen name="key_text_size">24sp</dimen>
+    <dimen name="infoField_text_size">25sp</dimen>
+    <dimen name="workField_text_size">35sp</dimen>
+    <dimen name="switchDarkTheme_text_size">18sp</dimen>
+    <dimen name="buttonMarginLeft">5dp</dimen>
+
 </resources>
