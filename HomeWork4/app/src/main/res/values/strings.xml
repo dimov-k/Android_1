@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
+    <string name="button0">0</string>
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+    <string name="button4">4</string>
+    <string name="button5">5</string>
+    <string name="button6">6</string>
+    <string name="button7">7</string>
+    <string name="button8">8</string>
+    <string name="button9">9</string>
+    <string name="buttonPoint">.</string>
+    <string name="buttonResult">=</string>
+    <string name="buttonMinus">-</string>
+    <string name="buttonPlus">+</string>
+    <string name="buttonDivision">/</string>
+    <string name="buttonMultiplication">X</string>
+    <string name="buttonPercent">%</string>
+    <string name="buttonDel">DEL</string>
+    <string name="buttonCe">CE</string>
+
+    <string name="todo">TODO</string>
+
+    <string name="my_cool_style">My cool style</string>
+    <string name="material_light">Material light</string>
+    <string name="material_light_action_bar_dark">Material light action bar dark</string>
+    <string name="material_dark">Material dark</string>
+    <string name="button_Settings">Settings</string>
+    <string name="switchTheme">Switch Themes</string>
+    <string name="save">Save</string>
+    <string name="changeThemes">Change Themes</string>
+    <string name="settings">Settings</string>
+
+
+</resources>
